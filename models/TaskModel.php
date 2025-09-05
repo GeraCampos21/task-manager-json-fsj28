@@ -24,13 +24,14 @@ class TaskModel{
         $this->status = 'Pendiente';
         $this->id_employee = $id_empleyoee;
     }
-
+  
     //metodo para obtener todas las tareas del json
     public static function all(){
+        //SELECT * FROM table
         if(file_exists(self::$file_path)){
             //obteniendo el archivo json
             $data_json = file_get_contents(self::$file_path);
-            //print_r($data_json);
+
             //json_decode() = convertir tu JSON a un arreglo de PHP - json_encode() = convertir un arreglo de PHP a json
             //decodificando el json a un arreglo de PHP
             return json_decode($data_json, true); //arreglo de las tareas
@@ -63,6 +64,9 @@ class TaskModel{
             "status" => $this->status,
             "id_employee" => $this->id_employee
         ];
+
+        //Aqui si lleva el objeto con todos sus valores 
+        //print_r($list_tasks); 
 
         self::loadJSON($list_tasks);
         return "Se ha guardado correctamente";
